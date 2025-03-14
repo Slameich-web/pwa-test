@@ -2,14 +2,12 @@ import Logo from "components/Logo";
 import { useTranslation } from "react-i18next";
 import { useDisplayType } from "utils/display";
 import { DisplayTypes } from "utils/display/types";
-import { useComponentContainer } from "./container";
 import styles from "./home.module.css";
 import { useEffect, useState } from "react";
 
 function Home() {
   const { t } = useTranslation();
   const display = useDisplayType();
-  const Component = useComponentContainer();
   const [state1, setState1] = useState<any>();
   const [state2, setState2] = useState<any>();
   const [state3, setState3] = useState("");
@@ -43,18 +41,13 @@ function Home() {
         <Logo />
         <p className={styles.welcomeText}>{t("welcome")}</p>
         {display === DisplayTypes.DESKTOP ? <p>Desktop</p> : <p>Mobile</p>}
-        {Component.State.todos.map((t) => (
-          <div className={t.completed ? styles.completed : ""} key={t.id}>
-            {t.title}
-          </div>
-        ))}
       </header>
       <div>state1 {state1}</div>
       <div>state2 {state2}</div>
       <div>state3 {state3}</div>
       <div>
-        state4{" "}
-        {state4.map((i: any) => (
+        state4
+        {state4?.map((i: any) => (
           <div>{JSON.stringify(i)}</div>
         ))}
       </div>
