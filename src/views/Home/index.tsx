@@ -34,7 +34,7 @@ function Home() {
   useEffect(() => {
     test();
     console.log("test");
-  });
+  }, [state1, state2, state3, state4]);
   return (
     <div className={styles.app}>
       <header className={styles.appHeader}>
