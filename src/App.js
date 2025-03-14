@@ -9,14 +9,19 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Routes from "routes";
 import { ApplicationState } from "containers/application/state";
 import "utils/localization";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const App = () => {
+  const [state1, setState1] = useState();
+  const [state2, setState2] = useState();
+
   const test = async () => {
     const app_cache = await caches?.open("app");
     console.log("app_cache", app_cache);
+    setState1(JSON.stringify(app_cache));
     const response = await app_cache?.match("/path/to/your/data");
     console.log("response", response);
+    setState2(JSON.stringify(response));
   };
   useEffect(() => {
     test();
@@ -26,6 +31,8 @@ const App = () => {
       <Router>
         <Routes />
       </Router>
+      <div>{state1}</div>
+      <div>{state2}</div>
     </ApplicationState.Provider>
   );
 };
