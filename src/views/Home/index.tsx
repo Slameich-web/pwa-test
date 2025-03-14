@@ -13,6 +13,9 @@ function Home() {
   const [state3, setState3] = useState("");
   const [state4, setState4] = useState<any>();
 
+  console.log("navigator", navigator);
+  console.log("navigator.serviceWorker", navigator.serviceWorker);
+
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.getRegistrations().then((registrations) => {
       if (registrations.length) {
@@ -24,7 +27,7 @@ function Home() {
     });
   }
   const test = async () => {
-    const app_cache = await caches?.open("app");
+    const app_cache = await caches?.open("Sample PWA");
     console.log("app_cache", app_cache);
     setState1(JSON.stringify(app_cache));
     const response = await app_cache?.match("/path/to/your/data");
