@@ -26,6 +26,9 @@ function Home() {
       }
     });
   }
+  console.log("navigator1", navigator);
+  console.log("navigator.serviceWorker1", navigator.serviceWorker);
+
   const test = async () => {
     const app_cache = await caches?.open("Sample PWA");
     console.log("app_cache", app_cache);
