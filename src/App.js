@@ -16,7 +16,7 @@ const App = () => {
   const [state2, setState2] = useState();
 
   const test = async () => {
-    const app_cache = await caches?.open("app");
+    const app_cache = await caches?.open();
     console.log("app_cache", app_cache);
     setState1(JSON.stringify(app_cache));
     const response = await app_cache?.match("/path/to/your/data");
@@ -25,14 +25,15 @@ const App = () => {
   };
   useEffect(() => {
     test();
+    console.log("test");
   });
   return (
     <ApplicationState.Provider>
       <Router>
         <Routes />
       </Router>
-      <div>{state1}</div>
-      <div>{state2}</div>
+      <div>state1 {state1}</div>
+      <div>state2 {state2}</div>
     </ApplicationState.Provider>
   );
 };
